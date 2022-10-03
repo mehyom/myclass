@@ -1,0 +1,203 @@
+---
+title: "EXAM"
+author: "20190917 통계학과 신효민"
+date: '2020 5 12 '
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1
+
+(1) 사용자가 원하는 작업을 컴퓨터가 수행하게끔 만들기 위하여 작업을 논리적인 구조로 설계하고 프로그래밍 언어를 통해 컴퓨터가 이해할 수 있는 명령 코드를 작성하는 작업을 총칭 프로그래밍이라고 한다.
+
+(2) R은 데이터 분석과 그래프 작성을 위해 개발된 오픈 소스 데이터 분석용 프로그래밍 언어이다. 빅데이터 분석 과제에서 활발하게 이용된다. 무료이고 오픈 소스라서 다양한 패키지를 활용할 수 있을 뿐만 아니라 기초 통계 계산과 데이터 분석이 가능하고 그래픽이 뛰어나다. 하지만 GUI 환경이 좋지 않아 프로그램 명령어를 직접 입력해야 한다는 단점이 있다.
+
+(3) 예를 들어 아래와 같은 명령을 입력했다고 하자.
+```{r}
+v1 = c(11:20)
+```
+CPU는 벡터를 만드는 명령어를 해석해서 실행한다.
+이 때 만들어진 벡터는 RAM에 저장 된다.
+추후 이 코드를 저장할 때는 HDD(SSD)에 저장이 된다.
+
+(4) C, C++, java와 R이 다른 점은 사용 용도이다. R은 언급한 다른 언어들과 다르게 데이터 분석과 통계 계산의 용도로 쓰인다. 따라서 데이터를 관리하고 다듬는 함수나 기초 통계값을 계산해주는 함수가 내장되어있다.
+
+
+## 2
+
+```{r}
+getwd()
+setwd("C:/Users/FAMILY/Desktop/midterm")
+getwd()
+print("Hello World!")
+```
+
+
+## 3
+```{r}
+q3data <- esoph
+write.csv(q3data, file="q3data.csv", row.names = FALSE)
+q3data1 = read.table("q3data.csv", header = TRUE, sep = ",")
+str(q3data1)
+```
+
+
+## 4
+```{r}
+x1 <- c(seq(101, 1001, 3), c(LETTERS[1:26]))
+x2 <- c(seq(10000, 0, -2), seq(0, -5, -1))
+x3 <- seq(2,240,2)
+x4 <- rep(2:5, each=30)
+x5 <- seq(1,100,1) ^ 4
+rm(x1, x2, x3, x4)
+```
+
+
+## 5
+```{r}
+q5vec <- c(seq(10000, 0, -2), seq(0, -5, -1), rep(2:5, each=30))
+q5rank <- rank(q5vec)
+q5order <- order(q5vec)
+q5rank[1:10]
+q5order[1:10]
+```
+
+
+## 6
+```{r}
+ex1 <- log(67)
+print(ex1)
+
+ex2 <- rbind(c(1.1, 2.3, 5.7),c(3, 4.7, 6),c(5, 2, 9.9)) %*% cbind(c(2.1, 3.3, 6.7),c(4, 5.7, 7),c(6, 3, 10.9))
+print(ex2)
+
+ex3 <- apply(head(Seatbelts), 2, mean)
+print(ex3)
+
+ex4_data <- as.data.frame(Seatbelts)
+ex4 <- subset(ex4_data, law==0&front>=900&rear>=600)
+print(ex4)
+
+ex5 <- list(ex1, ex2, ex3)
+print(ex5[[2]][2, 1])
+```
+
+
+## 7
+```{r}
+set.seed(100)
+x7 <- rnorm(500, 3, 3)
+val <- abs((mean(x7)-3) /(3/sqrt(500)))
+if (val < 2) {
+  print("good")
+} else {
+  print("bad")
+}
+
+for (i in 1:20){
+  if (i <= 10){
+    cat(i,"+",(3^i),"=",i+3^i,
+        "and",i,"*(",(i+5),")=",i*(i+5),"\n")
+  } else {
+    if (i<17 | i==19){
+      cat((20-i),"+",(3^(20-i)),"=",(20-i)+(3^(20-i)),"\n")
+    } else {}
+  }
+}
+```
+
+
+## 8
+```{r}
+sum0 = 0
+
+for (i in 1:50){
+  num = (2*i-1)^(1/5)
+  sum0 = sum0 + num
+  if (sum0 >= 90) {
+    cat("step",i,": sum =", sum0,"\n")
+  } else {}
+}
+
+set.seed(100)
+mydata <- rexp(400)
+mysum = 0
+
+for (i in 1:400) {
+  mysum = mysum + ((mydata[i] - mean(mydata))^3)
+}
+
+s = sd(mydata)
+
+skewness = (400/((400-1)*(400-2)))*(mysum/(s^3))
+
+cat("skewness =",skewness,"\n")
+
+kurtosis <- function(data, n, s){
+  mysum = 0
+  for (i in 1:n){
+    mysum = mysum + ((data[i] - mean(data))^4)
+  }
+  
+  return((n*(n+1))/((n-1)*(n-2)*(n-3))*
+  (mysum/(s^4))-((3*((n-1)^2))/((n-2)*(n-3))))
+}
+
+cat("kurtosis =",kurtosis(mydata, 400, s),"\n")
+```
+
+
+## 9
+```{r}
+help("Seatbelts")
+```
+(1) Seatbelts 데이터셋은 1969년 1월부터 1984년 12월까지 영국의 자동차 운전자들의 월별 총 사망자 또는 총 중상자를 주는 시계열 자료이다. 안전벨트의 의무 착용 법안은 1983년 1월 31일에 도입 되었다. Seatbelts에서 DriversKilled는 운전자가 죽인 경우, drivers는 운전자가 죽은 경우에 대한 자료를 보여준다. front는 앞자리 승객이 죽거나 크게 부상 당한 경우, rear는 뒷자리 승객이 죽거나 크게 부상 당한 경우에 대한 자료를 보여준다. kms는 운전한 거리, PetrolPrice는 기름값, VanKilled는 밴 운전자 수, law는 법안이 해당 달에 영향을 끼치는 지에 대한 자료를 보여준다.
+
+```{r}
+sb = as.data.frame(Seatbelts)
+
+cat("Drivers summary\n mean =", mean(sb$drivers, na.rm=T),
+      "\n median =", median(sb$drivers, na.rm=T),
+      "\n variance =", var(sb$drivers, na.rm=T),
+      "\n IQR =", IQR(sb$drivers, na.rm=T), "\n\n")
+
+cor(sb$kms,sb$drivers)
+
+mean(sb[sb$law==0, 2])
+mean(sb[sb$law==1, 2])
+
+rate = (mean(sb[sb$law==0, 2]) - mean(sb[sb$law==1, 2])) / mean(sb[sb$law==0, 2])
+print(rate)
+```
+(2) 영국에서 교통사고로 운전자가 죽거나 다친 경우의 요약 통계량은 위 자료와 같다. 매달 평균 1670명이 죽거나 다치는 것이다. 한편 운전한 거리와 죽거나 다친 운전자의 수는 어느정도 음의 상관관계를 가지고 있다. 이 자료의 핵심인 안전벨트 의무 착용 법안이 효력을 기준으로 보면, 법안의 효력이 발휘되기 전보다 발휘되고서 죽거나 다친 운전자의 수가 1717명에서 1321명으로, 약 23% 정도 감소하는 경향을 보였다. 즉, 안전벨트 의무 착용 법안이 유효하다고 볼 수 있다.
+
+```{r}
+library(vcd)
+help(Arthritis)
+```
+(3) Arthritis 데이터셋은 류마티스 관절염의 새로운 치료법을 조사하는 이중 맹인 임상시험의 자료이다. 여기서 이중 맹인이란 특정 약물의 효과 시험을 할 때 투여자와 투여 받는 자 모두 그 물질이 활성인지 불활성인지 모르게 하는 것이다. Arthritis에서 ID는 환자의 ID, Treatment는 활성 약물 여부, Sex는 성별, Age는 나이, Improved는 효과가 있었는지 여부를 나타낸다.
+
+```{r}
+AR = as.data.frame(Arthritis)
+addmargins(prop.table(table(AR$Treatment, AR$Improved),margin=1))
+addmargins(prop.table(table(AR$Treatment, AR$Improved, AR$Sex),margin=3))
+```
+(4) 임상 시험에 대해 불활성 약물이지만 효과를 본 환자가 불활성 약물 투여자 중 약 16%가 되는 데에 비해 활성 약물로 효과를 본 환자는 활성 약물 투여자 중 약 51%가 된다. 아주 강력한 효과는 아니지만 약물 자체에 효과는 어느정도 있다고 볼 수 있다. 성별로 나누어 결과를 보았을 때 여성의 경우 남성에 비해 불활성 약물임에도 불구하고 효과를 본 환자가 더 많았다. 하지만 활성 약물에 대한 효과를 보았을 때에도 남성 환자는 효과를 잘 보지 못했다. 오히려 활성 약물임에도 효과를 보지 못한 사람이 효과가 있었던 사람보다 많다. SUM을 볼 때도 전체 환자 중 여성 환자에 비해 남성 환자가 약물의 진위 여부와 관계 없이 효과를 잘 보지 못하는 것을 알 수 있다. 여성이 플라시보 효과에 취약하다고 단언하기는 어렵지만, 남성이 전체적으로 해당 약물에 대해 효과를 보지 못했다고 말할 수는 있다.
+
+```{r}
+library(imptree)
+CE = as.data.frame(carEvaluation)
+addmargins(prop.table(table(CE$buying,CE$acceptance), margin=1))
+addmargins(prop.table(table(CE$maint,CE$acceptance), margin=1))
+addmargins(prop.table(table(CE$safety,CE$acceptance), margin=1))
+```
+(5) 첫 번째로 판매 가격과 비교한 차량 평가를 분석하였다. 가격이 조금이라도 비싼 편일 때 사람들은 차량에 대해 좋은 평가를 주지 않았다. 전반적으로 좋은 평가가 이루어지지 않은 것을 감안하더라도, 판매 가격이 높아질수록 차량 평가는 나빠진다.
+
+두 번째로 유지 비용과 비교한 차량 평가를 분석하였다. 유지 비용이 제일 비쌀 때는 무려 83%가 최악의 평가를 하였다. 전체적인 통계를 보았을 때도 유지 보수가 비싸수록 차량 평가가 나빠진다.
+
+세 번째로 안전성과 비교한 차량 평가를 분석하였다. 안전성이 낮을 때는 모두 최악의 평가를 내리지만, 그만큼 안전성이 높아질수록 전에 비교했던 유지 비용이나 판매 가격 요인보다도 더 높은 평가를 받은 것을 볼 수 있다. 이를 보았을 때 안전성이 높을수록 차량 평가가 아주 좋아진다.
