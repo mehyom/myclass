@@ -1,0 +1,4 @@
+﻿  maze.cpp
+C:\Users\FAMILY\Desktop\자료구조\과제\Report05\Report05_03\maze.cpp(47,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\Users\FAMILY\Desktop\자료구조\과제\Report05\Report05_03\maze.cpp(45): warning C4172: 지역 변수 또는 임시: here의 주소를 반환하고 있습니다.
+  Report05_03.vcxproj -> C:\Users\FAMILY\Desktop\자료구조\과제\Report05\Report05_03\Debug\Report05_03.exe
