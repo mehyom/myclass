@@ -1,5 +1,5 @@
 data eshop;
- infile 'C:\Users\FAMILY\Desktop\╫ех©╧н.csv';
+ infile 'C:\Users\FAMILY\Desktop\б╫ц┘ц┬б©б╧ц▌.csv';
  input yt;
  t=_n_;
  date=intnx('month','01jan2001'd,_n_-1);
