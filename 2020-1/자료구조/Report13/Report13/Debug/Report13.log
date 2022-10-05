@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\FAMILY\Desktop\자료구조\과제\Report13\Report13\main.cpp(6,13): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+  Report13.vcxproj -> C:\Users\FAMILY\Desktop\자료구조\과제\Report13\Debug\Report13.exe
