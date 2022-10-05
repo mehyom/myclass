@@ -1,0 +1,4 @@
+C:\Users\FAMILY\Desktop\자료구조\과제\Report02\structure_Person\Debug\structure_Person.exe
+C:\Users\FAMILY\Desktop\자료구조\과제\Report02\structure_Person\Debug\structure_Person.pdb
+C:\Users\FAMILY\Desktop\자료구조\과제\Report02\Report02_02\Debug\Report02_02.exe
+C:\Users\FAMILY\Desktop\자료구조\과제\Report02\Report02_02\Debug\Report02_02.pdb
